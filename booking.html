@@ -11,6 +11,13 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .glow {
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #f87171, 0 0 10px #f87171; }
+      to { text-shadow: 0 0 15px #f87171, 0 0 25px #f87171; }
+    }
   </style>
 </head>
 <body class="bg-black text-white font-sans">
@@ -20,7 +27,7 @@
     <div class="flex items-center justify-between px-4 py-4">
       <h1 class="text-xl md:text-2xl font-bold text-red-500">EKSAM TINT</h1>
       <nav class="hidden md:flex space-x-6 font-semibold">
-        <a href="home.html" class="hover:text-red-400 transition">Home</a>
+        <a href="index.html" class="hover:text-red-400 transition">Home</a>
         <a href="about.html" class="hover:text-red-400 transition">About</a>
         <a href="gallery.html" class="hover:text-red-400 transition">Gallery</a>
         <a href="booking.html" class="text-red-500">Booking</a>
@@ -31,15 +38,16 @@
 
   <!-- Hero -->
   <section class="h-[40vh] bg-cover bg-center flex items-center justify-center" style="background-image: url('images/1198387.png');">
-    <h2 class="text-4xl md:text-5xl font-bold text-red-500 fade-in">Book Your Appointment</h2>
+    <h2 class="text-4xl md:text-5xl font-bold text-red-500 fade-in glow">Book Your Appointment</h2>
   </section>
 
   <!-- Booking Form -->
   <section class="py-16 px-6 md:px-20">
     <h3 class="text-3xl md:text-4xl font-bold text-center mb-8 text-red-400">Fill Out the Form</h3>
     
-    <form id="bookingForm" action="https://formspree.io/f/yourFormID" method="POST" class="max-w-2xl mx-auto bg-gray-900/80 p-8 rounded-2xl shadow-lg space-y-6 fade-in">
-      
+    <!-- Formspree Form -->
+    <form action="https://formspree.io/f/yourFormID" method="POST" class="max-w-2xl mx-auto bg-gray-900/80 p-8 rounded-2xl shadow-lg space-y-6 fade-in">
+
       <!-- Name -->
       <div>
         <label class="block mb-2 font-semibold">Full Name</label>
@@ -63,11 +71,11 @@
         <label class="block mb-2 font-semibold">Preferred Time</label>
         <select name="time" required class="w-full p-3 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-red-500">
           <option value="">Select a Time Slot</option>
-          <option value="09:00 AM - 11:00 AM">09:00 AM - 11:00 AM</option>
-          <option value="11:00 AM - 01:00 PM">11:00 AM - 01:00 PM</option>
-          <option value="01:00 PM - 03:00 PM">01:00 PM - 03:00 PM</option>
-          <option value="03:00 PM - 05:00 PM">03:00 PM - 05:00 PM</option>
-          <option value="05:00 PM - 07:00 PM">05:00 PM - 07:00 PM</option>
+          <option>09:00 AM - 11:00 AM</option>
+          <option>11:00 AM - 01:00 PM</option>
+          <option>01:00 PM - 03:00 PM</option>
+          <option>03:00 PM - 05:00 PM</option>
+          <option>05:00 PM - 07:00 PM</option>
         </select>
       </div>
 
@@ -76,10 +84,13 @@
         <label class="block mb-2 font-semibold">Service</label>
         <select name="service" required class="w-full p-3 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-red-500">
           <option value="">Select a Service</option>
-          <option value="Window Tinting">Window Tinting</option>
-          <option value="Stickers & Signage">Stickers & Signage</option>
-          <option value="Headlight Tinting">Headlight Tinting</option>
-          <option value="Full Package">Full Package</option>
+          <option>Window Tinting</option>
+          <option>Stickers & Signage</option>
+          <option>Headlight Tinting</option>
+          <option>Chameleon Tint</option>
+          <option>Window Screening</option>
+          <option>Car Wrapping</option>
+          <option>Full Package</option>
         </select>
       </div>
 
@@ -90,64 +101,38 @@
       </div>
 
       <!-- Submit -->
-      <button type="submit" class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition">Submit Booking</button>
+      <button type="submit" class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition">
+        ✅ Submit Booking (Email)
+      </button>
     </form>
 
-    <!-- Success Message -->
-    <div id="successMessage" class="hidden mt-6 text-center text-green-400 font-semibold text-lg">
-      ✅ Your booking has been submitted successfully! We’ll contact you soon.
-    </div>
+    <!-- OR -->
+    <div class="text-center mt-6 text-gray-300">— OR —</div>
+
+    <!-- WhatsApp Booking -->
+    <form action="https://wa.me/918667296566" method="get" target="_blank" class="max-w-2xl mx-auto mt-6">
+      <input type="hidden" name="text" value="Hello, I’d like to book an appointment at EKSAM TINT. Please confirm my slot.">
+      <button type="submit" class="w-full py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold transition">
+        📲 Book via WhatsApp
+      </button>
+    </form>
+
+    <!-- SMS Booking -->
+    <form action="sms:8667296566" method="get" class="max-w-2xl mx-auto mt-4">
+      <input type="hidden" name="body" value="Hello, I’d like to book an appointment at EKSAM TINT. Please confirm my slot.">
+      <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition">
+        📩 Book via SMS
+      </button>
+    </form>
+
   </section>
 
   <!-- Back Button -->
   <section class="text-center py-10">
-    <a href="home.html" class="px-6 py-3 bg-gray-700 hover:bg-gray-800 rounded-lg font-semibold transition">⬅ Back to Home</a>
+    <a href="index.html" class="px-6 py-3 bg-gray-700 hover:bg-gray-800 rounded-lg font-semibold transition inline-block">
+      ⬅ Back to Home
+    </a>
   </section>
-
-  <script>
-    const form = document.getElementById("bookingForm");
-    const successMessage = document.getElementById("successMessage");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        form.reset();
-        successMessage.classList.remove("hidden");
-      } else {
-        alert("❌ Something went wrong. Please try again.");
-      }
-    });
-  </script>
-  <!-- CONTACT -->
-  <section id="contact" class="py-20 bg-gray-900">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 px-6 items-center">
-      <div data-aos="fade-right">
-        <h2 class="text-5xl font-bold mb-6">Contact Us</h2>
-        <p class="text-gray-300 mb-4">📍 33 Grasmere Road, Luton LU3 2DT</p>
-        <p class="text-gray-300 mb-4">📞 +44 7774 093433</p>
-        <p class="text-gray-300 mb-4">✉ info@eksamtint.com</p>
-      </div>
-      <div data-aos="fade-left">
-        <iframe src="https://www.google.com/maps?q=33+Grasmere+Road+Luton+LU3+2DT&output=embed"
-                class="w-full h-80 rounded-xl shadow-lg"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-6 bg-black text-center text-gray-500 text-sm">
-    © 2025 EKSAM TINT & STICKERS. All Rights Reserved.
-  </footer>
-
-  <script>
-    AOS.init({ duration: 1200 });
-  </script>
 
 </body>
 </html>

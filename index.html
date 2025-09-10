@@ -421,7 +421,83 @@ bg black/70 backdrop-blur-md text-white z-50">
       </div>
     </div>
   </section>
+<!-- Social Media Panel -->
+<!-- Social Media Panel -->
+<section class="py-12 bg-black text-white text-center">
+  <h2 class="text-3xl font-bold mb-6 animate-fade-in">Follow Us</h2>
 
+  <div class="flex justify-center space-x-8">
+    
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@eksamtint?_t=ZN-8zbbGD8QxuA&_r=1" 
+       target="_blank" 
+       class="social-btn tiktok">
+      <i class="fab fa-tiktok text-2xl"></i>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/eksamtint.uk?igsh=eWM0a3JrNnZ1dmV0" 
+       target="_blank" 
+       class="social-btn instagram">
+      <i class="fab fa-instagram text-2xl"></i>
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/share/1FDj6Qfy5m/" 
+       target="_blank" 
+       class="social-btn facebook">
+      <i class="fab fa-facebook-f text-2xl"></i>
+    </a>
+
+  </div>
+</section>
+
+<!-- ✅ Font Awesome (must be in <head>) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* Fade-in effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Base style for social buttons */
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  color: white;
+  transition: all 0.3s ease-in-out;
+  font-size: 24px;
+}
+
+/* Hover animation */
+.social-btn:hover {
+  transform: scale(1.2) rotate(5deg);
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+/* TikTok colors */
+.tiktok { background: #000; }
+.tiktok:hover { background: #ff0050; }
+
+/* Instagram gradient */
+.instagram { 
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.instagram:hover { opacity: 0.9; }
+
+/* Facebook colors */
+.facebook { background: #1877f2; }
+.facebook:hover { background: #0d65d9; }
+</style>
   <!-- FOOTER -->
   <footer class="py-6 bg-black text-center text-gray-500 text-sm">
     © 2025 EKSAM TINT & STICKERS. All Rights Reserved.
@@ -432,4 +508,3 @@ bg black/70 backdrop-blur-md text-white z-50">
   </script>
 </body>
 </html>
-

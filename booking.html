@@ -45,10 +45,10 @@
   <section class="py-16 px-6 md:px-20">
     <h3 class="text-3xl md:text-4xl font-bold text-center mb-8 text-red-400">Fill Out the Form</h3>
     
-    <!-- Booking Form -->
+    <!-- Web3Forms Email Form -->
     <form id="bookingForm" action="https://api.web3forms.com/submit" method="POST" class="max-w-2xl mx-auto bg-gray-900/80 p-8 rounded-2xl shadow-lg space-y-6 fade-in">
       <input type="hidden" name="access_key" value="877bfeb6-8dce-4b84-a9f6-23c6d35fc948">
-
+      
       <!-- Name -->
       <div>
         <label class="block mb-2 font-semibold">Full Name</label>
@@ -101,18 +101,10 @@
         <textarea name="message" rows="4" class="w-full p-3 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Any special requests..."></textarea>
       </div>
 
-      <!-- Submit Buttons -->
-      <div class="flex flex-col md:flex-row gap-4">
-        <button type="submit" class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition">
-          ✅ submit via  Email
-        </button>
-        <button type="button" onclick="sendToWhatsApp()" class="w-full py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold transition">
-          📲 submit via  Whatsapp
-        </button>
-        <button type="button" onclick="sendToSMS()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition">
-          📩 submit via SMS
-        </button>
-      </div>
+      <!-- Submit -->
+      <button type="submit" class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition">
+        ✅ Submit Booking
+      </button>
     </form>
   </section>
 
@@ -123,72 +115,30 @@
     </a>
   </section>
 
-  <!-- JavaScript -->
+  <!-- Confirmation Modal -->
+  <div id="confirmationModal" class="fixed inset-0 bg-black/70 flex items-center justify-center hidden">
+    <div class="bg-gray-900 p-8 rounded-2xl shadow-lg max-w-md text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-4">✅ Booking Sent!</h3>
+      <p class="text-gray-300 mb-6">Your booking has been submitted successfully. We will contact you soon.</p>
+      <button onclick="closeModal()" class="px-6 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition">Close</button>
+    </div>
+  </div>
+
+  <!-- JS -->
   <script>
-  function getFormData() {
-    return {
-      name: document.querySelector('input[name="name"]').value.trim(),
-      email: document.querySelector('input[name="email"]').value.trim(),
-      date: document.querySelector('input[name="date"]').value.trim(),
-      time: document.querySelector('select[name="time"]').value.trim(),
-      service: document.querySelector('select[name="service"]').value.trim(),
-      message: document.querySelector('textarea[name="message"]').value.trim()
-    };
-  }
+    const bookingForm = document.getElementById("bookingForm");
+    const modal = document.getElementById("confirmationModal");
 
-  // ✅ Send Email via Web3Forms
-  function sendToEmail() {
-    let form = document.getElementById("bookingForm");
-    let formData = new FormData(form);
+    bookingForm.addEventListener("submit", function(event) {
+      // show modal always when form is submitted
+      modal.classList.remove("hidden");
+    });
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        console.log("✅ Booking sent to Email!");
-      } else {
-        console.log("❌ Failed to send Email!");
-      }
-    })
-    .catch(err => console.error("⚠ Error: " + err));
-  }
+    function closeModal() {
+      modal.classList.add("hidden");
+      bookingForm.reset(); // clear form after closing
+    }
+  </script>
 
-  // ✅ WhatsApp + Email
-  function sendToWhatsApp() {
-    let data = getFormData();
-    sendToEmail(); // also send email
-
-    let phone = "447774093433"; 
-    let text = `📌 New Booking Request:
-👤 Name: ${data.name}
-✉ Email: ${data.email}
-📅 Date: ${data.date}
-⏰ Time: ${data.time}
-🛠 Service: ${data.service}
-💬 Message: ${data.message}`;
-
-    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
-    window.open(url, '_blank');
-  }
-
-  // ✅ SMS + Email
-  function sendToSMS() {
-    let data = getFormData();
-    sendToEmail(); // also send email
-
-    let phone = "447774093433"; 
-    let text = `New Booking Request:
-Name: ${data.name}
-Email: ${data.email}
-Date: ${data.date}
-Time: ${data.time}
-Service: ${data.service}
-Message: ${data.message}`;
-
-    let url = "sms:" + phone + "?body=" + encodeURIComponent(text);
-    window.open(url, '_blank');
-  }
-</script>
+</body>
+</html>

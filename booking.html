@@ -103,9 +103,21 @@
 
       <!-- Submit -->
       <button type="submit" class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition">
-        ✅ Submit Booking
+        ✅ Submit Booking (Email)
       </button>
     </form>
+
+    <!-- OR -->
+    <div class="text-center mt-6 text-gray-300">— OR —</div>
+
+    <!-- SMS Booking -->
+    <form id="smsForm" action="sms:447774093433" method="get" class="max-w-2xl mx-auto mt-4">
+      <input type="hidden" name="body" value="Hello, I’d like to book an appointment at EKSAM TINT. Please confirm my slot.">
+      <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition">
+        📩 Book via SMS
+      </button>
+    </form>
+
   </section>
 
   <!-- Back Button -->
@@ -127,16 +139,20 @@
   <!-- JS -->
   <script>
     const bookingForm = document.getElementById("bookingForm");
+    const smsForm = document.getElementById("smsForm");
     const modal = document.getElementById("confirmationModal");
 
     bookingForm.addEventListener("submit", function(event) {
-      // show modal always when form is submitted
-      modal.classList.remove("hidden");
+      modal.classList.remove("hidden"); // show modal
+    });
+
+    smsForm.addEventListener("submit", function(event) {
+      modal.classList.remove("hidden"); // show modal
     });
 
     function closeModal() {
       modal.classList.add("hidden");
-      bookingForm.reset(); // clear form after closing
+      bookingForm.reset();
     }
   </script>
 
